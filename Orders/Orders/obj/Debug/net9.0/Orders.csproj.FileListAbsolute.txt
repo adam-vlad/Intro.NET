@@ -9,10 +9,6 @@ C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug
 C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\AutoMapper.dll
 C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
-C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\Microsoft.OpenApi.dll
 C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\vldga\Documents\Facultate\Anul 3\.NET\Intro.NET\Orders\Orders\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
