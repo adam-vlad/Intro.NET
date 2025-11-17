@@ -1,15 +1,17 @@
 ﻿using AutoMapper;
-using Orders.Application.DTOs;
 using Orders.Domain.Entities;
-using Orders.Domain.Enums;
+using System.Globalization;
 
 namespace Orders.Application.Mapping.Resolvers;
 
-public class PriceFormatterResolver : IValueResolver<Order, OrderProfileDto, string>
+public class PriceFormatterResolver : IValueResolver<Order, object, string>
 {
-    public string Resolve(Order source, OrderProfileDto destination, string destMember, ResolutionContext context)
+    public string Resolve(Order source, object destination, string destMember, ResolutionContext context)
     {
-        var effective = source.Category == OrderCategory.Children ? source.Price * 0.9m : source.Price;
-        return effective.ToString("C2");
+        var effectivePrice = source.Category == Domain.Enums.OrderCategory.Children
+            ? source.Price * 0.9m
+            : source.Price;
+
+        return effectivePrice.ToString("C2", CultureInfo.GetCultureInfo("en-US"));
     }
 }

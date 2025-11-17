@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Orders.Application.Abstractions;
 using Orders.Application.DTOs;
@@ -9,40 +8,36 @@ using Orders.Application.Requests;
 namespace Orders.Controllers;
 
 [ApiController]
-[Route("api/orders")]
+[Route("api/[controller]")]
 public class OrdersController : ControllerBase
 {
     private readonly CreateOrderHandler _handler;
-    private readonly IMemoryCache _cache;
     private readonly IOrderRepository _repository;
-    private readonly IMapper _mapper;
+    private readonly IMemoryCache _cache;
 
-    public OrdersController(CreateOrderHandler handler, IMemoryCache cache, IOrderRepository repository, IMapper mapper)
+    public OrdersController(CreateOrderHandler handler, IOrderRepository repository, IMemoryCache cache)
     {
         _handler = handler;
-        _cache = cache;
         _repository = repository;
-        _mapper = mapper;
+        _cache = cache;
     }
 
     [HttpPost]
-    public ActionResult<OrderProfileDto> Create([FromBody] CreateOrderProfileRequest request)
+    public async Task<ActionResult<OrderProfileDto>> CreateOrder([FromBody] CreateOrderProfileRequest request)
     {
-        var dto = _handler.Handle(request);
-        return Ok(dto);
+        var result = await _handler.HandleAsync(request);
+        return Ok(result);
     }
 
     [HttpGet]
-    public ActionResult<List<OrderProfileDto>> GetAll()
+    public async Task<ActionResult<IEnumerable<OrderProfileDto>>> GetOrders()
     {
-        if (!_cache.TryGetValue("all_orders", out List<OrderProfileDto>? cached))
+        if (_cache.TryGetValue("all_orders", out IEnumerable<OrderProfileDto>? cachedOrders) && cachedOrders != null)
         {
-            var items = _repository.GetAll();
-            var list = _mapper.Map<List<OrderProfileDto>>(items);
-            var options = new MemoryCacheEntryOptions();
-            _cache.Set("all_orders", list, options);
-            cached = list;
+            return Ok(cachedOrders);
         }
-        return Ok(cached);
+
+        var orders = await _repository.GetAllAsync();
+        return Ok(orders);
     }
 }

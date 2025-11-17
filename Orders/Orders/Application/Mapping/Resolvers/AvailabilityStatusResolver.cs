@@ -1,17 +1,24 @@
 ﻿using AutoMapper;
-using Orders.Application.DTOs;
 using Orders.Domain.Entities;
 
 namespace Orders.Application.Mapping.Resolvers;
 
-public class AvailabilityStatusResolver : IValueResolver<Order, OrderProfileDto, string>
+public class AvailabilityStatusResolver : IValueResolver<Order, object, string>
 {
-    public string Resolve(Order source, OrderProfileDto destination, string destMember, ResolutionContext context)
+    public string Resolve(Order source, object destination, string destMember, ResolutionContext context)
     {
-        if (!source.IsAvailable) return "Out of Stock";
-        if (source.StockQuantity == 0) return "Unavailable";
-        if (source.StockQuantity == 1) return "Last Copy";
-        if (source.StockQuantity <= 5) return "Limited Stock";
-        return "In Stock";
+        if (!source.IsAvailable)
+            return "out of stock";
+
+        if (source.StockQuantity == 0)
+            return "unavailable";
+
+        if (source.StockQuantity == 1)
+            return "last copy";
+
+        if (source.StockQuantity <= 5)
+            return "limited stock";
+
+        return "in stock";
     }
 }
